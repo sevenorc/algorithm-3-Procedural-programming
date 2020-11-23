@@ -1,0 +1,31 @@
+FUNCTION dot_product(v1:ARRAY_OF FLOAT[3],v2:ARRAY_OF FLOAT[3]) : FLOAT
+VAR
+    i:INTEGER;
+    ps:FLOAT;
+BEGIN
+    ps:=0;
+    FOR i FROM 0 TO 2 DO
+        ps:=ps+(v1[i]*v2[i]);
+    END_FOR
+    RETURN ps;
+END
+
+ALGORITHM orthogonal_with_function
+VAR
+    n,i,j:INTEGER;
+    V:ARRAY_OF (ARRAY_OF(ARRAY_OF FLOAT[3])[2])[n];
+    scal:FLOAT:=0;
+BEGIN
+    READ(n);
+    FOR i FROM 0 TO n-1 DO
+        FOR j FROM 0 TO 2 DO
+            READ(V[i][0][j],V[i][1][j])
+        END_FOR
+        scal:=dot_product(V[i][0],V[i][1]);
+        IF (scal=0) THEN
+            WRITE("The two vectors",V[i][0],"and ",V[i][1]," are orthogonal") ELSE
+            WRITE("The two vectors",V[i][0],"and ",V[i][1]," are not orthogonal")
+        END_IF
+    END_FOR
+
+END

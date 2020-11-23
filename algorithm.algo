@@ -1,0 +1,19 @@
+ALGORITHM orthogonal_with_procedure
+VAR
+    n,i,j:INTEGER;
+    V:ARRAY_OF (ARRAY_OF(ARRAY_OF FLOAT[3])[2])[n];
+    scal:FLOAT:=0;
+BEGIN
+    READ(n);
+    FOR i FROM 0 TO n-1 DO
+        FOR j FROM 0 TO 2 DO
+            READ(V[i][0][j],V[i][1][j])
+        END_FOR
+        dot_product(V[i][0],V[i][1],scal)
+        IF (scal=0) THEN
+            WRITE("The two vectors",V[i][0],"and ",V[i][1]," are orthogonal") ELSE
+            WRITE("The two vectors",V[i][0],"and ",V[i][1]," are not orthogonal")
+        END_IF
+    END_FOR
+
+END
